@@ -1,0 +1,21 @@
+#!/bin/bash
+
+scide &
+sleep 5
+pd-l2ork -jack -open $HOME/nxPA/puredata/nxInit.pd -path $HOME/nxPA/puredata &
+sleep 5
+zynaddsubfx &
+sleep 5 
+jack_disconnect pure_data_0:output0 system:playback_1
+jack_disconnect pure_data_0:output1 system:playback_2
+jack_disconnect system:capture_1 pure_data_0:input0
+jack_disconnect system:capture_2 pure_data_0:input1
+jack_disconnect system:capture_1 SuperCollider:in_1
+jack_disconnect system:capture_2 SuperCollider:in_2
+jack_connect zynaddsubfx:out_1 SuperCollider:in_1
+jack_connect zynaddsubfx:out_2 SuperCollider:in_2
+jack_connect SuperCollider:out_1 pure_data_0:input0
+jack_connect SuperCollider:out_2 pure_data_0:input1
+sleep 5
+devilspie2
+
