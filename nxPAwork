@@ -4,7 +4,7 @@ scide &
 sleep 5
 pd-l2ork -jack -open $HOME/nxPA/puredata/nxInit.pd -path $HOME/nxPA/puredata &
 sleep 5
-zynaddsubfx &
+zynaddsubfx -l $HOME/nxPA/zyn/nxZyn001.xmz &
 sleep 5 
 jack_disconnect pure_data_0:output0 system:playback_1
 jack_disconnect pure_data_0:output1 system:playback_2
